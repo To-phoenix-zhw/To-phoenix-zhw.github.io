@@ -395,8 +395,8 @@
 <p>　　可是标记下传的时候就有问题了，我从父结点这里得到了两个标记，一个加标记一个乘标记，我怎么知道是谁先来谁后来呢？假设下传的这个结点值为3。现在它可以进行3 + 3 = 6, 6 * 5 = 30, 也可以进行3 * 5 = 15, 15 + 3 = 18。我们又可以想，那我们就做个标志变量嘛，0表示加先来，1表示乘先来或者写两个函数，一个先加后乘，一个先乘后加。但仔细思考，发现这种思路可行性不高，现在是一个加一个乘，当然可以这样，但是实际情况是，操作会不断累积不断累积，很多加过来，很多乘过来，交错进行，这时标志变量和调用两个函数还有办法吗？即使就想这样暴力，也会发现是极其浪费时间空间和精力的。</p>
 <p>　　 <strong style="background:#F0F0F0">所以这时我们就想出来了一个比较好的思路：</strong></p>
 <p>　　在写程序的时候，必定一个操作先写，一个操作后写，在这里我们就按照四则运算本身的<font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">优先级</strong></font>，先写乘，再写加。</p>
-<p>　　假设现在加操作过来了，在这个加操作之前，可能有加，也可能有乘，但是’+’在四则运算里面，优先级就是低于’×’的，所以这个加操作直接加在结果末尾就好了。</p>
-<p>　　假设现在乘操作过来了，在这个乘操作之前，可能有加，也可能有乘，那么对于之前的加，我们需要<font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">优先级</strong></font>，这是什么意思呢？</p>
+<p>　　假设现在加操作过来了，在这个加操作之前，可能有加，也可能有乘，但是“+”在四则运算里面，优先级就是低于“×”的，所以这个加操作直接加在结果末尾就好了。</p>
+<p>　　假设现在乘操作过来了，在这个乘操作之前，可能有加，也可能有乘，那么对于之前的加，我们需要<font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">一起乘</strong></font>，这是什么意思呢？</p>
 <p>　　还是刚才的例子，值为4，<code>lazy_sum = 3</code>, 现在需要乘上一个5</p>
 <p>　　<code>lazy_mul *= 5;</code> 很自然</p>
 <p>　　<code>sum *= 5;</code> 当前结点（符合要求的区间对应的结点）的sum作相应改变，也很自然</p>
@@ -427,15 +427,15 @@
 <p>下面是一些关于方差本身性质的推导，以得出更新区间平方和以及求出最终答案的正确方式。</p>
 <br>
 
-<blockquote class="colorquote warning"><p>变成某个定值如何实现？</p></blockquote>
+<blockquote class="colorquote warning"><p><strong>变成某个定值如何实现？</strong></p></blockquote>
 
 <p>　　之前我们思考过一个问题此处我们必然是要往乘和加两个基本四则运算上去思考。</p>
-<blockquote class="colorquote info"><p>　　变成某个值可以先乘上0再加上这个值。</p></blockquote>
+<blockquote class="colorquote info"><p>　　<font color="#FF0000">变成某个值可以先乘上0再加上这个值。</font></p></blockquote>
 
 <p>　　因此，当遇到区间推平操作的时候，只需要先调用一次乘操作函数，再调用一次加操作函数即可。</p>
 <br>
 
-<blockquote class="colorquote warning"><p>区间和、区间平方和与要求输出内容的联系？</p><p>要求输出内容：区间方差乘上这个区间内样本个数的平方</p></blockquote>
+<blockquote class="colorquote warning"><p><strong>区间和、区间平方和与要求输出内容的联系？</strong></p><p>要求输出内容：区间方差乘上这个区间内样本个数的平方</p></blockquote>
 
 <p>　　接下来就是草稿本上的一系列推导过程了。</p>
 <p>　　<font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">方差公式</strong></font>：$D(X) = E(X^2) - [E(X)]^2$</p>
@@ -443,7 +443,7 @@
 <p>　　一时想不过来可以将Ｄ和Ｅ全部用x1+x2+x3+···+xn/n的形式展开，自然会得出上述结论。这也就决定了我们需要用线段树多维护一个区间平方和的信息。</p>
 <br>
 
-<blockquote class="colorquote warning"><p>如何更新区间平方和？</p></blockquote>
+<blockquote class="colorquote warning"><p><strong>如何更新区间平方和？</strong></p></blockquote>
 
 <p>​        <strong>乘操作:</strong></p>
 <p>　　区间内每个元素乘上k再相加，相当于给原式加括号并在外面乘上$k^2$.<br>$$<br>(x_1＊k)^2+(x_2＊k)^2+(x_3＊k)^2<br>= k^2(x_1^2+x_2^2+x_3^2)<br>$$<br>　　<strong>加操作:</strong></p>
