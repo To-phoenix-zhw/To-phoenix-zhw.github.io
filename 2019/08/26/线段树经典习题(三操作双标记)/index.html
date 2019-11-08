@@ -1,0 +1,1049 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head><meta name="generator" content="Hexo 3.9.0">
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      线段树经典习题（三操作双标记） | 昭昭昏昏察察闷闷
+    
+  </title>
+  <meta name="author" content="ZhangHanwen">
+  <meta name="keywords" content>
+  <meta name="description" content="计算机，程序设计，学习，交流，成长">
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Annie.css">
+  
+  <!-- jquery -->
+	<script src="/js/jquery.min.js"></script>
+
+  <!-- leancloud -->
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script src="/js/leancloud.js"></script>
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground" data-img-mode="random" data-normal-src="/img/1.jpg" data-random-max="23" data-random-src="/img/Random-img/">
+	<div class="mask">
+		<!-- Logo and navigation -->
+		<div class="h-header">
+			<div id="logo">
+				<a href="/">
+					
+						Welcome
+					
+				</a>
+			</div>
+			
+			<div id="navigation-show">
+				<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+			</div>				
+		</div>
+
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<p class="motto"></p>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
+			</a>
+
+			
+				<!-- 
+	This is only a demo, please go to "https://time.is" to set your city time! 
+-->
+<style type="text/css">
+	.header-date {
+		font-size: 1.6rem;
+		color: #fff;
+		position: absolute;
+		bottom: 5px;
+		right: 1rem;
+		writing-mode: tb-rl;
+	}	
+	
+	.header-date a {
+		border-bottom: none;
+	}
+
+	@media only screen and (max-width: 768 ) {
+		.header-date {
+			font-size: 1rem;
+		}			
+	}
+</style>
+<div class="header-date">
+	<a href="https://time.is/Beijing" id="time_is_link" rel="nofollow" ></a>
+	<span id="Beijing_z43d"></span>
+</div>
+<script src="//widget.time.is/zh.js"></script>
+<script>
+	time_is_widget.init({
+		Beijing_z43d:{
+			template:"DATE", 
+			date_format:"year年 monthname dnum日"
+		}
+	});
+</script>
+			
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><h1>0.0%</h1></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			当前文章&nbsp;:&nbsp;《线段树经典习题（三操作双标记）》
+		
+	</p>
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<h3>Navigation</h3>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	<div class="nav-body">
+		<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	<div class="nav-footer">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-weibo"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-pinterest"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+		<script src="/plugin/toc/katelog.min.js"></script>
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+	<div class="article-title">
+		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+		
+	<a href="/2019/08/26/线段树经典习题(三操作双标记)/" itemprop="url">
+		线段树经典习题（三操作双标记）
+	</a>
+
+	</div>
+
+	<div class="article-meta">
+		<span>
+			<i class="fa fa-calendar"></i>
+			
+
+
+	发布于
+
+	<a href="/2019/08/26/线段树经典习题(三操作双标记)/" itemprop="url">
+		<time datetime="2019-08-26T02:01:36.077Z" itemprop="datePublished">
+	  		2019-08-26
+	  </time>
+	</a>
+	&nbsp;
+
+
+
+
+
+			
+
+
+
+
+	更新于
+
+	<a href="/2019/08/26/线段树经典习题(三操作双标记)/" itemprop="url">
+		<time datetime="2019-08-26T02:01:36.077Z" itemprop="dateUpdated">
+	  		2019-08-26
+	  </time>
+	</a> 
+
+
+
+		</span>
+		<span>
+			<i class="fa fa-tags"></i>
+			
+	
+		<a href="/tags/数据结构/" class=" ">
+			数据结构
+		</a>
+	
+		<a href="/tags/线段树/" class=" ">
+			线段树
+		</a>
+	
+		
+		</span>
+		
+		
+
+
+
+	</div>
+
+	<div class="article-content" id="article-content">
+		<p><a href="https://acm.uestc.edu.cn/home" target="_blank" rel="noopener">OJ评测</a>：Lutece-2143-方差</p>
+<p>　　这道题目可以算是线段树稍难的题目，通过对这道题目的练习，可以提高编写线段树的熟练程度，并加深对线段树的理解。</p>
+<h4 id="一、题目内容："><a href="#一、题目内容：" class="headerlink" title="一、题目内容："></a>一、题目内容：</h4><p>维护一个序列，支持快速进行四种操作。</p>
+<ul>
+<li>将一个区间内的所有数加上一个定值;</li>
+<li>将一个区间内的所有数乘上一个定值;</li>
+<li>将一个区间内的所有数设为一个定值(区间推平);</li>
+<li>输出区间方差乘上这个区间内样本个数的平方，结果对$10^9+7$取模。</li>
+<li>数据范围：序列长度≤$10^6$，操作次数≤$10^6$。</li>
+</ul>
+<h4 id="二、题目分析："><a href="#二、题目分析：" class="headerlink" title="二、题目分析："></a>二、题目分析：</h4><h5 id="Step-1：“单操作”"><a href="#Step-1：“单操作”" class="headerlink" title="Step 1：“单操作”"></a>Step 1：“单操作”</h5><p>——（区间中每个数只能加上一个定值或者只能改为某个定值）</p>
+<p>　　如果只有单独的某一个操作，即加上一个定值或者设为一个定值，就是线段树的模板题。做出这道题的重要基础，是掌握<strong>线段树的基本姿势</strong>，即攻克模板题。读者可以自行上网学习博客，笔者现提供一个博客地址作参考:<a href="https://www.cnblogs.com/iris001999/articles/9058603.html" target="_blank" rel="noopener">线段树</a>。</p>
+<p>　　单操作模板题地址：<a href="https://www.luogu.org/problem/P3372" target="_blank" rel="noopener">模板：线段树1</a></p>
+<br>
+
+<h5 id="Step-2：“双操作”（重要衔接）"><a href="#Step-2：“双操作”（重要衔接）" class="headerlink" title="Step 2：“双操作”（重要衔接）"></a>Step 2：“双操作”（重要衔接）</h5><h5 id="——（区间中每个数既可以加上一个定值又能够乘上一个定值"><a href="#——（区间中每个数既可以加上一个定值又能够乘上一个定值" class="headerlink" title="——（区间中每个数既可以加上一个定值又能够乘上一个定值)"></a>——（区间中每个数既可以加上一个定值又能够乘上一个定值)</h5><p>　　在进行三操作之前，我们可以先来考虑双操作，即同时实现加上定值和乘上定值。这相当于是在单操作和三操作之间进行了一个<font color="#FF0000">衔接</font>。掌握了双操作，三操作会是一件非常自然的事情，只要在双操作基础上做一点小小地改动，就能实现。</p>
+<br>
+
+<blockquote class="colorquote warning"><p>细心的读者可能会问：为什么这个衔接不可以是加上某个定值和改变成某个定值的组合，而非得是加上某个定值和乘上某个定值的组合呢？</p></blockquote>
+
+<br>
+
+<p>　　读者可以先思考，如何实现改变成某个定值。当然，可以直接赋值，但是如果<u>借助四则运算</u>，就会发现，改变成某个定值可以用加法和乘法实现。</p>
+<p>　　一步一步来，我们会详细探讨。</p>
+<p>　　双操作题目地址：<a href="https://www.luogu.org/problem/P3373" target="_blank" rel="noopener">线段树2</a></p>
+<br>
+
+<h4 id="①-头脑风暴："><a href="#①-头脑风暴：" class="headerlink" title="① 头脑风暴："></a>① 头脑风暴：</h4><h5 id="双操作实现：加与乘"><a href="#双操作实现：加与乘" class="headerlink" title="双操作实现：加与乘"></a>双操作实现：加与乘</h5><blockquote class="colorquote info"><p>维护信息：区间和，懒标记</p><p>接下来我们一起思考一些关键性的问题，这些问题其实就是多重标记的核心问题，经过这番思考之后，相信我们对这种多标记类型的线段树问题会有更深刻的认识。</p></blockquote>
+
+<br>
+
+<p><font color="#FF0000">Q1: 几个懒标记？</font></p>
+<p>　　我们知道，懒标记是用来向下延迟修改的，所以在当前结点需要做个记号，表示我该下传的还没有下传。那什么时候下传呢？一旦之后某个操作需要继续向下深入，进行一些查找或者修改操作的时候，经过这个结点时，自然可以利用这个结点保存的懒标记信息，进行下面结点的信息更新(push_down)。<del>懒标记相当于暂时记个账。</del></p>
+<p>　　对下，我们延迟了修改，但是对上，需要汇报准确的信息，所以还需要向上更新，即有一个上传操作（push_up）。</p>
+<p>　　两个懒标记，一个保存延迟的加操作信息，一个保存延迟的乘操作信息。我们把它们分别命名为lazy_sum, lazy_mul，便于后续讨论。</p>
+<br>
+
+<p><font color="#FF0000">Q2: 两个懒标记如何不打架且良好配合？</font></p>
+<p>　　我们可以看一个实例来帮助我们理解<strong><u>优先级</u></strong>的问题：</p>
+<p>　　现在有一个数：4，它的子结点值为3，执行两组操作</p>
+<p>　　I.先乘5后加3</p>
+<p>　　II.先加3后乘5</p>
+<p>​    <br></p>
+<p>假设之前的懒标记均为<strong>初始值</strong>，即<code>lazy_sum = 0, lazy_mul = 1</code>（想一想，初始值为什么是这样）.</p>
+<p>I. 先乘5后加3：<code>4 * 5 = 20， 20 + 3 = 23</code></p>
+<p>　　子结点同样：<code>3 * 5 = 15， 15 + 3 = 18</code></p>
+<p>　　在程序写法上，我们遵从先乘后加。</p>
+<br>
+
+<p>II.先加3后乘5：<code>lazy_sum = 3;</code></p>
+<p>　　  　　　　  <code>lazy_mul = 5;</code></p>
+<p>　　更新值的时候，我们可能会想，这很自然啊，<code>4 + 3 = 7, 7 * 5 = 35</code></p>
+<p>　　可是标记下传的时候就有问题了，我从父结点这里得到了两个标记，一个加标记一个乘标记，我怎么知道是谁先来谁后来呢？假设下传的这个结点值为3。现在它可以进行3 + 3 = 6, 6 * 5 = 30, 也可以进行3 * 5 = 15, 15 + 3 = 18。我们又可以想，那我们就做个标志变量嘛，0表示加先来，1表示乘先来或者写两个函数，一个先加后乘，一个先乘后加。但仔细思考，发现这种思路可行性不高，现在是一个加一个乘，当然可以这样，但是实际情况是，操作会不断累积不断累积，很多加过来，很多乘过来，交错进行，这时标志变量和调用两个函数还有办法吗？即使就想这样暴力，也会发现是极其浪费时间空间和精力的。</p>
+<p>　　 <strong style="background:#F0F0F0">所以这时我们就想出来了一个比较好的思路：</strong></p>
+<p>　　在写程序的时候，必定一个操作先写，一个操作后写，在这里我们就按照四则运算本身的<font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">优先级</strong></font>，先写乘，再写加。</p>
+<p>　　假设现在加操作过来了，在这个加操作之前，可能有加，也可能有乘，但是“+”在四则运算里面，优先级就是低于“×”的，所以这个加操作直接加在结果末尾就好了。</p>
+<p>　　假设现在乘操作过来了，在这个乘操作之前，可能有加，也可能有乘，那么对于之前的加，我们需要<font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">一起乘</strong></font>，这是什么意思呢？</p>
+<p>　　还是刚才的例子，值为4，<code>lazy_sum = 3</code>, 现在需要乘上一个5</p>
+<p>　　<code>lazy_mul *= 5;</code> 很自然</p>
+<p>　　<code>sum *= 5;</code> 当前结点（符合要求的区间对应的结点）的sum作相应改变，也很自然</p>
+<p>　　<code>lazy_sum *= 5;</code><strong>这句话就需要着重理解</strong></p>
+<p>　　接下来下传的时候，值为3的子结点得到了父结点传下来的两个懒标记信息：<code>lazy_sum = 15, lazy_mul = 5;</code></p>
+<p>　　由此，事情就这样演变：<code>3 * 5 = 15; 15 + 15 = 30;</code></p>
+<p>　　与我们脑海里面构想的，<code>3 + 3 = 6；6 * 5 = 30；</code>答案是一致的</p>
+<p>​    <br></p>
+<p>　　现在我们可以反过来验证，如果之前没有lazy_sum *= 5, lazy_sum还是等于3，事情就这样演变：3 * 5 = 15; 15 + 3 = 18; 与我们的预想不一致。</p>
+<p>　　所以这里实际上用了个分配率，相当于(3 + <code>3</code>) * 5 = 3 * 5 + <u><code>3</code> * 5</u>  = 30，方框中的3为懒标记的3.</p>
+<br>
+
+<p>　　我们之所以要经历这样坎坷的心路历程，是为了保证我们push_down的时候，能够不知不觉，潜移默化地保证所有操作的先后顺序。两个懒标记变量毕竟始终是两个定值，因此我们需要随时对这两个值进行有效的修改，修改之后，便可以始终秉承乘先加后的优先级规则，进行运算，得出正确结果。</p>
+<blockquote class="colorquote success"><p>​        <strong>所以我们解决的是，操作的先后与乘法加法的先后之间的矛盾问题。</strong></p></blockquote>
+
+<br>
+
+<h4 id="②代码示例"><a href="#②代码示例" class="headerlink" title="②代码示例"></a>②代码示例</h4><blockquote class="colorquote info"><p>可以将线段树的相关信息写在结构体里，这是比较好的代码风格和习惯，这里我们采取多个通过结点编号关联起来的数组的形式作为示例，供读者参考。</p></blockquote>
+
+<div><div class="fold_hider"><div class="close hider_title">点击显/隐代码</div></div><div class="fold">
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p3373-Segment_Tree2</span></span><br><span class="line"><span class="comment">// 确定优先级，以及相互之间的影响关系</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100010</span>;</span><br><span class="line">LL a[MAXN], sum[MAXN*<span class="number">4</span>];</span><br><span class="line">LL lazy_add[MAXN*<span class="number">4</span>], lazy_mul[MAXN*<span class="number">4</span>];</span><br><span class="line">LL MOD;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_up</span><span class="params">(LL root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 标记上传，向上汇报信息</span></span><br><span class="line">    sum[root] = (sum[root &lt;&lt; <span class="number">1</span>] + sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]) % MOD;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_down</span><span class="params">(LL root, LL len)</span> </span>&#123;</span><br><span class="line"><span class="comment">// 不直接加等乘等，分开写，在涉及取模这里更能保证正确性 </span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (lazy_add[root] == <span class="number">0</span> &amp;&amp; lazy_mul[root] == <span class="number">1</span>) <span class="keyword">return</span>; <span class="comment">// 判断父结点是否传了有效的懒标记信息</span></span><br><span class="line">    	<span class="comment">// 当然可以在调用这个函数之前判断，以决定要不要调用这个函数</span></span><br><span class="line">    <span class="keyword">if</span> (lazy_mul[root] != <span class="number">1</span>) &#123; <span class="comment">// 乘标记有信息</span></span><br><span class="line">        lazy_mul[root &lt;&lt; <span class="number">1</span>] = (lazy_mul[root &lt;&lt; <span class="number">1</span>] * lazy_mul[root]) % MOD;</span><br><span class="line">        lazy_mul[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = (lazy_mul[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] * lazy_mul[root]) % MOD; </span><br><span class="line">        <span class="comment">// 传进来的root的左右子结点更新乘标记（直接乘）</span></span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span>] = (sum[root &lt;&lt; <span class="number">1</span>] * lazy_mul[root] % MOD) % MOD;</span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = (sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] * lazy_mul[root] % MOD) % MOD; </span><br><span class="line">        <span class="comment">// 传进来的root的左右子结点更新维护的区间和信息（直接乘）</span></span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span>] = lazy_add[root &lt;&lt; <span class="number">1</span>] * lazy_mul[root] % MOD;</span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] * lazy_mul[root] % MOD;</span><br><span class="line">		<span class="comment">// 乘对加的影响（着重思考和探讨的地方）</span></span><br><span class="line">        lazy_mul[root] = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// “销账”，父结点对应懒标记恢复初始状态</span></span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">if</span> (lazy_add[root] != <span class="number">0</span>) &#123;<span class="comment">// 加标记有信息</span></span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span>] = (sum[root &lt;&lt; <span class="number">1</span>] + lazy_add[root] * (len - (len) / <span class="number">2</span>)) % MOD;</span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = (sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] + lazy_add[root] * (len / <span class="number">2</span>)) % MOD;</span><br><span class="line">      <span class="comment">// 传进来的root的左右子结点更新区间和（注意左右子结点不同的区间长度：可手画做几个例子）</span></span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span>] = (lazy_add[root &lt;&lt; <span class="number">1</span>] + lazy_add[root]) % MOD;</span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = (lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] + lazy_add[root]) % MOD;</span><br><span class="line">      <span class="comment">// 传进来的root的左右子结点更新加标记（直接加）</span></span><br><span class="line">        </span><br><span class="line">        lazy_add[root] = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// “销账”，父结点对应懒标记恢复初始状态</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(LL l, LL r, LL root)</span> </span>&#123;</span><br><span class="line">    lazy_add[root] = <span class="number">0</span>; lazy_mul[root] = <span class="number">1</span>; <span class="comment">// 初始化标记在双重标记里面显得尤为重要</span></span><br><span class="line">    <span class="comment">// 这个初始化就不能仅仅放在l==r的大括号里面了</span></span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        sum[root] = a[l];</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    build(l, mid, root &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    build(mid + <span class="number">1</span>, r, root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    push_up(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">upgrade1</span><span class="params">(LL la, LL rb, LL l, LL r, LL val, LL root)</span> </span>&#123; <span class="comment">// 加操作</span></span><br><span class="line">    <span class="keyword">if</span> (la &lt;= l &amp;&amp; rb &gt;= r) &#123;</span><br><span class="line">        lazy_add[root] += val;</span><br><span class="line">        sum[root] += val * (r - l + <span class="number">1</span>) % MOD;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push_down(root, r - l + <span class="number">1</span>);</span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (la &lt;= mid) upgrade1(la, rb, l, mid, val, root &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (rb &gt; mid) upgrade1(la, rb, mid + <span class="number">1</span>, r, val, root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    push_up(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">upgrade2</span><span class="params">(LL la, LL rb, LL l, LL r, LL val, LL root)</span> </span>&#123; <span class="comment">// 乘操作</span></span><br><span class="line">    <span class="keyword">if</span> (la &lt;= l &amp;&amp; rb &gt;= r) &#123;</span><br><span class="line">        lazy_mul[root] = (val % MOD * lazy_mul[root] % MOD) % MOD;</span><br><span class="line">        lazy_add[root] = lazy_add[root] * val % MOD;</span><br><span class="line">        sum[root] = (sum[root] * val % MOD) % MOD;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push_down(root, r - l + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (la &lt;= mid) upgrade2(la, rb, l, mid, val, root &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (rb &gt; mid) upgrade2(la, rb, mid + <span class="number">1</span>, r, val, root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    push_up(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">query</span><span class="params">(LL la, LL rb, LL l, LL r, LL root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (la &lt;= l &amp;&amp; rb &gt;= r) &#123;</span><br><span class="line">        <span class="keyword">return</span> sum[root];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push_down(root, r - l + <span class="number">1</span>);</span><br><span class="line">    LL ans = <span class="number">0</span>;</span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (la &lt;= mid) ans += query(la, rb, l, mid, root &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (rb &gt; mid) ans += query(la, rb, mid + <span class="number">1</span>, r, root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 注意查询函数与更新函数不同，不需要上传，我们可以细细品味下其中的缘由</span></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    <span class="keyword">int</span> N, M;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%lld"</span>, &amp;N, &amp;M, &amp;MOD);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line"></span><br><span class="line">    build(<span class="number">1</span>, N, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (M--) &#123; <span class="comment">// 按照题目要求相应调用即可</span></span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        LL x, y, k;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;id);</span><br><span class="line">        <span class="keyword">if</span> (id == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>, &amp;x, &amp;y, &amp;k);</span><br><span class="line">            upgrade2(x, y, <span class="number">1</span>, N, k, <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (id == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>, &amp;x, &amp;y, &amp;k);</span><br><span class="line">            upgrade1(x, y, <span class="number">1</span>, N, k, <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;x, &amp;y);</span><br><span class="line">            LL ans = query(x, y, <span class="number">1</span>, N, <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans % MOD);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+<br>
+
+<h5 id="Step-3：“三操作”"><a href="#Step-3：“三操作”" class="headerlink" title="Step 3：“三操作”"></a>Step 3：“三操作”</h5><h4 id="①头脑风暴："><a href="#①头脑风暴：" class="headerlink" title="①头脑风暴："></a>①头脑风暴：</h4><p>第一步到第二步算是一个陡增，第二步到第三步只需增加两个式子即可。</p>
+<p>下面是一些关于方差本身性质的推导，以得出更新区间平方和以及求出最终答案的正确方式。</p>
+<br>
+
+<blockquote class="colorquote warning"><p><strong>变成某个定值如何实现？</strong></p></blockquote>
+
+<p>　　之前我们思考过一个问题此处我们必然是要往乘和加两个基本四则运算上去思考。</p>
+<blockquote class="colorquote info"><p>　　<font color="#FF0000">变成某个值可以先乘上0再加上这个值。</font></p></blockquote>
+
+<p>　　因此，当遇到区间推平操作的时候，只需要先调用一次乘操作函数，再调用一次加操作函数即可。</p>
+<br>
+
+<blockquote class="colorquote warning"><p><strong>区间和、区间平方和与要求输出内容的联系？</strong></p><p>要求输出内容：区间方差乘上这个区间内样本个数的平方</p></blockquote>
+
+<p>　　接下来就是草稿本上的一系列推导过程了。</p>
+<p>　　<font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">方差公式</strong></font>：$D(X) = E(X^2) - [E(X)]^2$</p>
+<p><font face="STCAIYUN" color="#ff2d2d"> <strong style="background:#F0F0F0">等式两边同时乘上$n^2$，左 = 右 = 区间平方和 * 样本个数 - 区间和的平方</strong></font></p>
+<p>　　一时想不过来可以将Ｄ和Ｅ全部用x1+x2+x3+···+xn/n的形式展开，自然会得出上述结论。这也就决定了我们需要用线段树多维护一个区间平方和的信息。</p>
+<br>
+
+<blockquote class="colorquote warning"><p><strong>如何更新区间平方和？</strong></p></blockquote>
+
+<p>　　<strong>乘操作:</strong></p>
+<p>　　区间内每个元素乘上k再相加，相当于给原式加括号并在外面乘上$k^2$.<br>$$<br>(x_1＊k)^2+(x_2＊k)^2+(x_3＊k)^2<br>= k^2(x_1^2+x_2^2+x_3^2)<br>$$<br>　　<strong>加操作:</strong></p>
+<p>　　稍微麻烦一些，不过不是特别复杂的化简。<br>$$<br>(x_1+k)^2+(x_2+k)^2+(x_3+k)^2<br>= x_1^2+x_2^2+x_3^2+3k^2+2k(x_1+x_2+x_3)<br>$$<br>​        一般化，则将上面的$3k^2$改为$区间长度*k^2$</p>
+<p>　　上述两公式即解决了更新区间平方和的问题。</p>
+<blockquote class="colorquote danger"><p><strong>注：</strong></p><p>​        1. 此处固定先更新区间平方和再更新区间和，因为区间平方和的更新要用到先前的区间和，顺序不能颠倒。</p><p>​        2. 题目要求取模，要注意能取模的地方都取模，该取模的地方一定取模，多取模都没有关系，一旦少取，可能导致结果一直不正确。（取模参见同余定理）</p><p>​        3. 此处最好不要写乘等和除等，涉及多处取模，可能容易出错。</p></blockquote>
+
+<br>
+
+<h4 id="②代码示例-1"><a href="#②代码示例-1" class="headerlink" title="②代码示例"></a>②代码示例</h4><p>　　三操作代码与双操作基本无异，只是多了区间平方和的维护，用我们得出的两个式子即可实现。MOD写得较多，有些必要有些不必要，只要必要的地方保证写到即可。</p>
+<p>　　读者可以仅参考等号左边的变量，注意更改顺序，而不必纠结细节。</p>
+<div><div class="fold_hider"><div class="close hider_title">点击显/隐代码</div></div><div class="fold">
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Data_Structure-A-2143-variance</span></span><br><span class="line"><span class="comment">// 把所有数据都开long long</span></span><br><span class="line"><span class="comment">// 包括题目给的初始定标数据N，Q </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> LL MOD = <span class="number">1E9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> LL MAXN = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">LL num[MAXN]; </span><br><span class="line">LL lazy_add[MAXN*<span class="number">4</span>], lazy_mul[MAXN*<span class="number">4</span>], sum[MAXN*<span class="number">4</span>], square_sum[MAXN*<span class="number">4</span>]; </span><br><span class="line">LL N, Q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_up</span><span class="params">(LL root)</span> </span>&#123;</span><br><span class="line">    sum[root] = (sum[root &lt;&lt; <span class="number">1</span>] % MOD + sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD) % MOD;</span><br><span class="line">    square_sum[root] = (square_sum[root &lt;&lt; <span class="number">1</span>] % MOD + square_sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD) % MOD;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_down</span><span class="params">(LL root, LL len)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (lazy_mul[root] != <span class="number">1</span>) &#123;</span><br><span class="line">        lazy_mul[root &lt;&lt; <span class="number">1</span>] = ((lazy_mul[root &lt;&lt; <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">        lazy_mul[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = ((lazy_mul[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">        square_sum[root &lt;&lt; <span class="number">1</span>] = (((square_sum[root &lt;&lt; <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD)) % MOD * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">        square_sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = (((square_sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD))%MOD * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span>] = ((sum[root &lt;&lt; <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = ((sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span>] = ((lazy_add[root &lt;&lt; <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = ((lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD) * (lazy_mul[root] % MOD)) % MOD;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lazy_add[root] != <span class="number">0</span>) &#123;</span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span>] = (lazy_add[root &lt;&lt; <span class="number">1</span>] % MOD + lazy_add[root] % MOD) % MOD;</span><br><span class="line">        lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = (lazy_add[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD + lazy_add[root] % MOD) % MOD;</span><br><span class="line">        square_sum[root &lt;&lt; <span class="number">1</span>] = ((square_sum[root &lt;&lt; <span class="number">1</span>] + ((((len - (len) / <span class="number">2</span>)  % MOD) * (lazy_add[root] % MOD)) % MOD * (lazy_add[root] % MOD) % MOD ) % MOD) % MOD + ((<span class="number">2</span> * ((lazy_add[root]) % MOD)) % MOD * (sum[root &lt;&lt; <span class="number">1</span>] % MOD) % MOD) % MOD) % MOD;</span><br><span class="line">        square_sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = ((square_sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] + ((len / <span class="number">2</span>) * (lazy_add[root] % MOD) % MOD) * (lazy_add[root] % MOD) % MOD) % MOD + ((<span class="number">2</span> * (lazy_add[root] % MOD) % MOD) * (sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD)) % MOD) % MOD;</span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span>] = (sum[root &lt;&lt; <span class="number">1</span>] % MOD + (lazy_add[root] % MOD) * ((len - (len) / <span class="number">2</span>) % MOD) % MOD) % MOD;</span><br><span class="line">        sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = (sum[root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] % MOD + (lazy_add[root] % MOD) * ((len / <span class="number">2</span>) % MOD) % MOD) % MOD; </span><br><span class="line">    &#125;</span><br><span class="line">    lazy_mul[root] = <span class="number">1</span>; lazy_add[root] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(LL root, LL l, LL r)</span> </span>&#123;</span><br><span class="line">    lazy_add[root] = <span class="number">0</span>; lazy_mul[root] = <span class="number">1</span>; sum[root] = <span class="number">0</span>; square_sum[root] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">    	sum[root] = num[l];</span><br><span class="line">    	square_sum[root] = ((num[l] % MOD) * (num[l] % MOD)) % MOD;</span><br><span class="line">    	<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    build(root &lt;&lt; <span class="number">1</span>, l, mid);</span><br><span class="line">    build(root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line"></span><br><span class="line">    push_up(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">upgrade1</span><span class="params">(LL root, LL la, LL rb, LL l, LL r, LL v)</span> </span>&#123; <span class="comment">// 加操作</span></span><br><span class="line">    <span class="keyword">if</span> (la &lt;= l &amp;&amp; rb &gt;= r) &#123;</span><br><span class="line">        lazy_add[root] = (lazy_add[root] % MOD + v % MOD) % MOD;</span><br><span class="line">        square_sum[root] = (square_sum[root] % MOD + (((r - l + <span class="number">1</span>) % MOD * (v % MOD) % MOD) * (v % MOD) % MOD) % MOD + ((<span class="number">2</span> * (v % MOD)) % MOD * (sum[root] % MOD)) % MOD) % MOD;</span><br><span class="line">        sum[root] = (sum[root] % MOD + ((v % MOD) * ((r - l + <span class="number">1</span>)) % MOD) %MOD) % MOD;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push_down(root, r - l + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (la &lt;= mid) upgrade1(root &lt;&lt; <span class="number">1</span>, la, rb, l, mid, v);</span><br><span class="line">    <span class="keyword">if</span> (rb &gt; mid) upgrade1(root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, la, rb, mid + <span class="number">1</span>, r, v);</span><br><span class="line"></span><br><span class="line">    push_up(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">upgrade2</span><span class="params">(LL root, LL la, LL rb, LL l, LL r, LL v)</span> </span>&#123; <span class="comment">// 乘操作</span></span><br><span class="line">    <span class="keyword">if</span> (la &lt;= l &amp;&amp; rb &gt;= r) &#123;</span><br><span class="line">        lazy_mul[root] = (lazy_mul[root] % MOD * (v % MOD)) % MOD;</span><br><span class="line">        lazy_add[root] = (lazy_add[root] % MOD * (v % MOD)) % MOD;</span><br><span class="line">        square_sum[root] = (((square_sum[root] % MOD) * (v % MOD)) % MOD * (v % MOD)) % MOD;</span><br><span class="line">        sum[root] = ((sum[root] % MOD) * (v % MOD)) % MOD;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push_down(root, r - l + <span class="number">1</span>);</span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (la &lt;= mid) upgrade2(root &lt;&lt; <span class="number">1</span>, la, rb, l, mid, v);</span><br><span class="line">    <span class="keyword">if</span> (rb &gt; mid) upgrade2(root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, la, rb, mid + <span class="number">1</span>, r, v);</span><br><span class="line"></span><br><span class="line">    push_up(root);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// id为1，查询平方和，id为2，查询和</span></span><br><span class="line"><span class="function">LL <span class="title">query</span><span class="params">(LL root, LL la, LL rb, LL l, LL r, <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (la &lt;= l &amp;&amp; rb &gt;= r) &#123;</span><br><span class="line">        <span class="keyword">if</span> (id == <span class="number">1</span>) <span class="keyword">return</span> square_sum[root];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (id == <span class="number">2</span>) <span class="keyword">return</span> sum[root];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push_down(root, r - l + <span class="number">1</span>);</span><br><span class="line">    LL answer = <span class="number">0</span>;</span><br><span class="line">    LL mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (la &lt;= mid) answer += query(root &lt;&lt; <span class="number">1</span>, la, rb, l, mid, id);</span><br><span class="line">    <span class="keyword">if</span> (rb &gt; mid) answer += query(root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, la, rb, mid + <span class="number">1</span>, r, id);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;N, &amp;Q);</span><br><span class="line">    <span class="keyword">for</span> (LL i = <span class="number">1</span>; i &lt;= N; i++) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;num[i]);</span><br><span class="line">	<span class="built_in">memset</span>(lazy_add, <span class="number">0</span>, <span class="keyword">sizeof</span>(lazy_add));</span><br><span class="line">	<span class="built_in">memset</span>(lazy_mul, <span class="number">0</span>, <span class="keyword">sizeof</span>(lazy_mul));</span><br><span class="line">	<span class="built_in">memset</span>(sum, <span class="number">0</span>, <span class="keyword">sizeof</span>(sum));</span><br><span class="line">	<span class="built_in">memset</span>(square_sum, <span class="number">0</span>, <span class="keyword">sizeof</span>(square_sum));</span><br><span class="line">    build(<span class="number">1</span>, <span class="number">1</span>, N);</span><br><span class="line">    <span class="keyword">while</span> (Q--) &#123;</span><br><span class="line">        <span class="keyword">int</span> id; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;id);</span><br><span class="line">        LL ql, qr, k;</span><br><span class="line">        <span class="keyword">if</span> (id == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>, &amp;ql, &amp;qr, &amp;k);</span><br><span class="line">            upgrade1(<span class="number">1</span>, ql, qr, <span class="number">1</span>, N, k);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (id == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>, &amp;ql, &amp;qr, &amp;k);</span><br><span class="line">            upgrade2(<span class="number">1</span>, ql, qr, <span class="number">1</span>, N, k);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (id == <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>, &amp;ql, &amp;qr, &amp;k);</span><br><span class="line">            upgrade2(<span class="number">1</span>, ql, qr, <span class="number">1</span>, N, <span class="number">0</span>);</span><br><span class="line">            upgrade1(<span class="number">1</span>, ql, qr, <span class="number">1</span>, N, k);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (id == <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;ql, &amp;qr);</span><br><span class="line">            LL interval_square_sum = query(<span class="number">1</span>, ql, qr, <span class="number">1</span>, N, <span class="number">1</span>);</span><br><span class="line">            LL interval_sum = query(<span class="number">1</span>, ql, qr, <span class="number">1</span>, N, <span class="number">2</span>);</span><br><span class="line">            LL ans = (MOD + (interval_square_sum % MOD) * ((qr - ql + <span class="number">1</span>) % MOD) % MOD - (interval_sum % MOD * (interval_sum % MOD)) % MOD) % MOD;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+	
+	</div>
+	
+	<div id="current-post-cover" data-scr="/img/post-cover/cart_cover1.jpg"></div>
+
+	<!-- relate post, comment...-->
+	<div class="investment-container">
+		<div class="investment-header">
+			<div class="investment-title-1">
+				<div class="on">相关文章</div>
+				<div>评论</div>
+				<div>分享</div>
+			</div>
+			<div class="investment-title-2">	            
+				
+	<span>
+		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		
+			<a href="/2019/08/27/《诗经·周南·关雎》/" title="《诗经·周南·关雎》" rel="prev">
+				&laquo;上一篇
+			</a>
+		
+		
+			<a href="/2019/08/25/hello-world/" title="Hello World" rel="next">
+				下一篇&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+			</div>	
+		</div>
+		
+		<div class="investment-content">
+			<div class="investment-content-list">
+				
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/06/数据结构的基本概念/" title="数据结构的基本概念">
+								数据结构的基本概念			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 6日, 2019				
+							</p>
+							<p class="relate-post-content">
+								数据　　之前认为的数据只是纯粹的数字，如3, 3.5等，但是现在需要在这个理解之上更深一步，理解3和3.5不同之处到底在哪。
+　　数据除了数字大小本身之外，还包含其可进行的操作。如3，属于整数，可以进行加减乘除，而3.5，属于实数，它...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/06/数据结构的基本概念/" title="数据结构的基本概念">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/cart_cover3.jpg" alt="数据结构的基本概念"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/08/28/《诗经·周南·卷耳》/" title="《诗经·周南·卷耳》">
+								《诗经·周南·卷耳》			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 28日, 2019				
+							</p>
+							<p class="relate-post-content">
+								卷耳 毛诗序 《卷耳》，后妃之志也，又当辅佐君子，求贤审官，知臣下之勤劳。内有进贤之志，而无险诐私谒之心，朝夕思念，至于忧勤也。
+采采卷耳，不盈顷筐。嗟我怀人，寘彼周行。
+
+
+陟彼崔嵬，我马虺隤。我姑酌彼金罍，维以不永怀！
+
+
+陟彼高...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/08/28/《诗经·周南·卷耳》/" title="《诗经·周南·卷耳》">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post_cover/cart_cover4.jpg" alt="《诗经·周南·卷耳》"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/08/27/《诗经·周南·关雎》/" title="《诗经·周南·关雎》">
+								《诗经·周南·关雎》			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 27日, 2019				
+							</p>
+							<p class="relate-post-content">
+								国风国者，诸侯所封之域；而风者，民俗歌谣之诗也。谓之风者，以其被上之化以有言，而其言又足以感人，如物因风之动以有声，而其声又足以动物也。是以诸侯采之以贡于天子，天子受之而列于乐官，于以考其俗尚之美恶，而知其政治之得失焉。旧说二《南》为...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/08/27/《诗经·周南·关雎》/" title="《诗经·周南·关雎》">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/cart_cover2.jpg" alt="《诗经·周南·关雎》"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/08/25/hello-world/" title="Hello World">
+								Hello World			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 25日, 2019				
+							</p>
+							<p class="relate-post-content">
+								Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/08/25/hello-world/" title="Hello World">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Hello World"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+		</ul>
+	
+</div>	
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-comment">
+
+	
+
+		
+
+			<!-- gitalk comment -->
+			<!-- show gitalk comment -->
+<div id="gitalk-container"></div>
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//Thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//Remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//Create gitalk
+	var gitalk = new Gitalk({
+		clientID: '9b95630dcd761994956c',
+		clientSecret: '079a0f37492b0d7e8d2e7738dcf30b29a5a3bc33',
+		//id: window.location.pathname,
+		//id: decodeURI(window.location.pathname),
+		//id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
+		repo: 'Annie-Gitalk',
+		owner: 'ZhangHanwen',
+		admin: 'ZhangHanwen',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+
+		
+		
+	
+
+</div>
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+			</div>
+		</div>	
+	</div>
+	</div>
+</div>
+
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+
+<!-- show math formula -->
+
+	<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config(
+			{ 
+				tex2jax: {
+					inlineMath: [['$','$'], ['\\(','\\)']]
+				} 
+			}
+		);
+	</script>
+
+
+
+	 
+	<script src="/plugin/clipboard/clipboard.js"></script>
+	<script>
+		// Copy code !
+	    function codePreprocessing() {
+	        $("#article-content .highlight").each(function() {
+
+	            $(this).wrap('<div id="post-code"></div>');
+
+	        })
+
+	        $("#article-content #post-code").each(function() {
+
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            var temp = $(this).next().attr('class'),
+	                language = ((temp.length > 9) && (temp != null)) ? temp.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+
+	            $(this).append('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i></span>');
+
+	        });
+	    }
+
+		function codeCopy() {
+		    $('#article-content #post-code').each(function(i) {
+		        var codeCopyId = 'codeCopy-' + i;
+
+		        var codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+
+		    
+			var clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn copy-status');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');
+			    
+			});
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		
+
+		}
+
+		if ($('.layout-post').length) {
+		    codePreprocessing();
+		    codeCopy();
+		} 
+	</script>
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	var titleID = $('.article-title a'),
+		imageID = $('.article-content img'),
+		videoID = $('.article-content video');
+
+	var postTitle = titleID.text() ? titleID.text() : "No post title!";
+
+	imageID.each(function() {
+		var imgPath = $(this).attr('src'),
+			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
+	});
+
+	videoID.each(function() {
+		var videoPath = $(this).attr('src');
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+	});
+	//TODO：支持html5 video
+
+	if($('#layout-post').length) {
+		$('[data-fancybox="gallery"]').fancybox({
+			loop: true,
+			buttons: [
+				"zoom",
+				"share",
+				"slideShow",
+				"fullScreen",
+				//"download",
+				"thumbs",
+				"close"
+			],
+			protect: false
+		});
+	}
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div class="social">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-weibo"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-pinterest"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+		
+	<div class="copyright">
+		<p>
+			 
+				&copy;2019, content by ZhangHanwen. All Rights Reserved.
+			
+			
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+		</p>
+		<p>
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- set '1' to show motto in all pages! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		$(".motto").html( getMingYanContent() );
+	</script>	
+
+
+
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/plugin/search/search.js"></script>
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+<!-- love effect -->
+
+
+<!-- back to top -->
+
+	
+	<div id="totop">
+  		<a href="javascript:;"  name="TOTOP" class="fa fa-arrow-up" ></a>
+	</div>
+
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<script src="/plugin/vibrant/vibrant.js"></script>
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imgLazyLoader/yall.min.js"></script>
+<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/js/resizediv.js"></script>
+<script src="/js/main.js"></script>
+	</body>	
+</html>
