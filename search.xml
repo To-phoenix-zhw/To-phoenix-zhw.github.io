@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/2020/10/19/hello-world/</url>
+    <url>/2019/08/25/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -17,6 +17,65 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>数据结构的基本概念</title>
+    <url>/2019/10/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><p>　　之前认为的数据只是纯粹的数字，如3, 3.5等，但是现在需要在这个理解之上更深一步，理解3和3.5不同之处到底在哪。</p>
+<p>　　数据除了数字大小本身之外，还包含其可进行的<strong>操作</strong>。如3，属于整数，可以进行加减乘除，而3.5，属于实数，它与整数的不同，不仅仅是多了这个小数点，还在于，它多了向上向下取整，四舍五入等新操作；复数，可以取实部取虚部求模；矩阵，可以求逆矩阵，求转置，求行列式。</p>
+<p>　　因此区分不同类型的数据，不能仅仅从外观上来看，而要从本质来看：即不同类型的数据必定有不同类型的操作。</p>
+<p>　　除此之外，除了数值型数据，还有非数值型数据，如文字、图像和声音。所有数据在计算机中均以二进制形式存储。</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>　　结构，重点是数据与数据之间的关系。线性表，数据间关系就是前后顺序关系；树，数据间关系体现层次关系；图，数据间关系就是一种网状关系。</p>
+<p>　　数据结构并不特别关心其中的每个数据具体是怎样的，更多地关心数据和数据之间是如何组织起来建立联系的。特别关心其中的每个数据具体是怎样的，则是数据库的研究范畴。</p>
+<p>　　再将数据的特点结合起来，得出数据结构的三要素：<strong>数据、关系、操作</strong>。</p>
+<p>　　简单理解，数据结构就是一种<strong>关系学</strong>。</p>
+<h3 id="数据结构的特性"><a href="#数据结构的特性" class="headerlink" title="数据结构的特性"></a>数据结构的特性</h3><ul>
+<li>静态特性</li>
+<li>动态特性</li>
+</ul>
+<p><strong>静态特性</strong>：基于空间的考虑。</p>
+<p><strong>动态特性</strong>：基于操作性的考虑。</p>
+<p>如：每个人的信息都放在各自的档案袋里，可以将所有的档案袋叠放在一起。这样组织结构，空间占地很小，但当我要取出其中某一个人的信息时，查找起来十分不方便。也可以将每个档案袋单独放在一个抽屉里，这样组织结构，查找时一目了然，但是空间占地很大。</p>
+<p>因此我们希望的是，一种数据结构不仅有较好的静态特性（占空间小），又有良好的动态特性（操作性强）。</p>
+<h3 id="数据结构的结构分类"><a href="#数据结构的结构分类" class="headerlink" title="数据结构的结构分类"></a>数据结构的结构分类</h3><ul>
+<li>逻辑结构</li>
+<li>物理结构</li>
+</ul>
+<p><strong>逻辑结构</strong>：看到的抽象结构本身。如一张线性表，一棵树，一张图。</p>
+<p><strong>物理结构</strong>：在计算机中真正的存放结构。</p>
+<p>如二维数组，在计算机中就有按行存储和按列存储的方式，但实际上并没有这样的二维结构，真正存放都是一维的。如果是按行存储，a[3] [2]就代表第3行第2列，如果是按列存储，a[3] [2]就代表第2行第3列。这时就有个问题，多维数组呢？如何明晰多维数组在计算机中真正的存放结构呢？以及树，图，在计算机中到底是如何存储的呢？</p>
+<p>同时，相同逻辑结构可以对应不同的物理结构，物理结构不同，相应的算法编写也必须做出相应的改变，如之前a[3] [2]的例子。因此一个逻辑结构对应着很多套物理结构和相应的算法程序。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>　　有了以上的种种考虑，就可以知道如何描述一种数据类型了。此处用数学的方式来描述清楚一个数据类型：集合。</p>
+<p>　　这个数据类型对应的集合里包含三个大的集合：数据，关系，操作。将这三个大的集合描述清楚之后，这个数据类型也就明朗了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADT A &#123; &#x2F;&#x2F; 定义A这种数据类型</span><br><span class="line">	D &#123;&#125; &#x2F;&#x2F; data objection</span><br><span class="line">	R &#123;&#125; &#x2F;&#x2F; data relationship</span><br><span class="line">	O &#123;&#125; &#x2F;&#x2F; data operation</span><br><span class="line">&#125; ADT A</span><br></pre></td></tr></table></figure>
+
+<p>c++相比c语言的好处之模板</p>
+<p>c++支持函数重载，不需要f1,f2,f3,…,f100，当你要调用某一个的时候，要找到对应谁是非常麻烦的。</p>
+<p>不同类型要写100个，仍然非常麻烦，因此把数据类型本身作为一个变量，产生模板。</p>
+<p>不同操作类型仍然要写很多个，因此再进一步抽象，把运算符抽象。c++中没有直接的运算符抽象，宏指令稍微有运算符抽象的意味在其中。</p>
+<p>c++相比c语言的好处之封装</p>
+<p>封装：安全性、无意性</p>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="算法的特性"><a href="#算法的特性" class="headerlink" title="算法的特性"></a>算法的特性</h2><ul>
+<li>有穷性：一定能执行完，有限步骤</li>
+<li>确定性：不管机器如何，环境如何，谁执行，结果永远不变</li>
+<li>可行性：能够落地，能够把这种计算方法用程序语言描述出来</li>
+<li>有输入</li>
+<li>有输出</li>
+</ul>
+<h2 id="描述算法的方法"><a href="#描述算法的方法" class="headerlink" title="描述算法的方法"></a>描述算法的方法</h2><p>自然语言、流程图、约定方式</p>
+<h2 id="算法的设计原则"><a href="#算法的设计原则" class="headerlink" title="算法的设计原则"></a>算法的设计原则</h2><p>正确性、健壮性——对于用户而言</p>
+<p>阅读性——对于开发者本身而言</p>
+<h2 id="算法的评价标准"><a href="#算法的评价标准" class="headerlink" title="算法的评价标准"></a>算法的评价标准</h2><ul>
+<li>时间特性</li>
+<li>空间特性</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
   </entry>
   <entry>
     <title>现代软件工程第7-8周学习</title>
