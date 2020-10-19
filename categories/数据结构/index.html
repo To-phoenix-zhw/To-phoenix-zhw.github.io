@@ -44,62 +44,6 @@
 
 
 
-    
-        <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        
-            load: ['[tex]/mhchem'],
-        
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        
-            packages: {'[+]': ['mhchem']},
-        
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
           
 
 
@@ -268,153 +212,25 @@
   
   <main id="main-contain" class="mdui-container mdui-m-t-5">
     
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2020/10/19/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AC%AC7-8%E5%91%A8%E5%AD%A6%E4%B9%A0/">现代软件工程第7-8周学习</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2020-10-19
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2020-10-19
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">现代软件工程</a>
-    </span>
     
-  </div>
-</div>   
     
 
 
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/ >-现代软件工程 -博客搭建</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>去年搭建了该博客，中途把他修改了之后拿去参加网页设计大赛，现在要重新恢复他的博客身份，并在全新的本地仓库中进行操作。</p>
-<p>hexo上传到github上的只是生成的public文件夹，其中是相关的html文件，要进行修改和持续更新博客，需要重新部署hexo环境。</p>
-<h1 id="①-找到最初版本的commit，以该commit创建新分支blog"><a href="#①-找到最初版本的commit，以该commit创建新分支blog" class="headerlink" title="① 找到最初版本的commit，以该commit创建新分支blog"></a>①...
-          
+<div class="mdui-card mdui-p-a-4 mdui-m-b-5">
+    <div class="posts-collapse">
+        <div class="collection-title">
+            <h2>数据结构<small>分类</small></h2>
         </div>
         
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2020/10/19/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AC%AC7-8%E5%91%A8%E5%AD%A6%E4%B9%A0/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2020/10/19/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%8F%E5%85%B8%E4%B9%A0%E9%A2%98(%E4%B8%89%E6%93%8D%E4%BD%9C%E5%8F%8C%E6%A0%87%E8%AE%B0)/">线段树经典习题（三操作双标记）</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2020-10-19
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2020-10-19
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%AE%B5%E6%A0%91/ >-数据结构 -线段树</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p><a target="_blank" rel="noopener" href="https://acm.uestc.edu.cn/home">OJ评测</a>：Lutece-2143-方差</p>
-<p>　　这道题目可以算是线段树稍难的题目，通过对这道题目的练习，可以提高编写线段树的熟练程度，并加深对线段树的理解。</p>
-<h4 id="一、题目内容："><a href="#一、题目内容：" class="headerlink" title="一、题目内容："></a>一、题目内容：</h4><p>维护一个序列，支持快速进行四种操作。</p>
-<ul>
-<li>将一个区间内的所有数加上一个定值;</li>
-<li>将一个区间内的所有数乘上一...
-          
-        </div>
+            <div class="collection-item">
+                <h3><a href="/2020/10/19/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%8F%E5%85%B8%E4%B9%A0%E9%A2%98(%E4%B8%89%E6%93%8D%E4%BD%9C%E5%8F%8C%E6%A0%87%E8%AE%B0)/">线段树经典习题（三操作双标记）</a></h3>
+                <time itemprop="dateCreated" datetime=2020-10-19 >
+                    2020.10.19
+                </time>
+            </div>
         
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2020/10/19/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%8F%E5%85%B8%E4%B9%A0%E9%A2%98(%E4%B8%89%E6%93%8D%E4%BD%9C%E5%8F%8C%E6%A0%87%E8%AE%B0)/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2020/10/19/hello-world/">Hello World</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2020-10-19
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2020-10-19
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="tag-line-space"></div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or yo...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2020/10/19/hello-world/">阅读更多</a>
-        </div>
-      </div>
-    </article>
+    </div>
+</div>
 
 
 
