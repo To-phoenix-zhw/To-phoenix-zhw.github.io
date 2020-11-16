@@ -129,4 +129,19 @@
         <tag>-现代软件工程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>现代软件工程第11-12周</title>
+    <url>/2020/11/16/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AC%AC11-12%E5%91%A8/</url>
+    <content><![CDATA[<h1 id="一、完善PyQt搭建的图形界面"><a href="#一、完善PyQt搭建的图形界面" class="headerlink" title="一、完善PyQt搭建的图形界面"></a>一、完善PyQt搭建的图形界面</h1><p>这周完善了PyQt搭建的图形界面。</p>
+<p>PyQt搭建图形界面使小组对项目有了更深的理解，后续我们将采用开发网站的方式形成最终的黄金点游戏。</p>
+<h1 id="二、引入OCR手写识别功能"><a href="#二、引入OCR手写识别功能" class="headerlink" title="二、引入OCR手写识别功能"></a>二、引入OCR手写识别功能</h1><p>调用了飞桨和腾讯云的OCR手写字体识别功能，扩展游戏功能，使得游戏支持玩家将数字写在纸条上再进行黄金点游戏的方式。</p>
+<h1 id="三、用Django框架搭建起网站"><a href="#三、用Django框架搭建起网站" class="headerlink" title="三、用Django框架搭建起网站"></a>三、用Django框架搭建起网站</h1><p>首先在本地利用Bootstrap框架进行前端开发，并用Django矿建进行后端开发，搭建网站。后续将网站部署到阿里云服务器上，使得互联网的用户可以联网玩这个游戏。</p>
+]]></content>
+      <categories>
+        <category>现代软件工程</category>
+      </categories>
+      <tags>
+        <tag>-现代软件工程</tag>
+      </tags>
+  </entry>
 </search>
